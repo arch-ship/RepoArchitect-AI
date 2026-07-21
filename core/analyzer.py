@@ -14,7 +14,7 @@ def get_groq_client(api_key: str) -> Groq:
 
 
 def groq_call(client: Groq, prompt: str, system: str = None,
-              max_tokens: int = 2000, model: str = "llama3-8b-8192") -> str:
+              max_tokens: int = 2000, model: str = "llama-3.3-70b-versatile") -> str:
     """Make a Groq API call and return response text."""
     messages = []
     if system:
@@ -226,7 +226,7 @@ You are now the expert on this codebase. Answer questions about it."""
 
     try:
         resp = client.chat.completions.create(
-            model="llama3-70b-8192",  # Use larger model for interactive Q&A
+            model="llama-3.3-70b-versatile",  # Use larger model for interactive Q&A
             messages=messages,
             max_tokens=1500,
             temperature=0.4
@@ -236,7 +236,7 @@ You are now the expert on this codebase. Answer questions about it."""
         # Fallback to 8b model
         try:
             resp = client.chat.completions.create(
-                model="llama3-8b-8192",
+                model="llama-3.1-8b-instant",
                 messages=messages,
                 max_tokens=1500,
                 temperature=0.4
