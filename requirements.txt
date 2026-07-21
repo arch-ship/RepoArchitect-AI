@@ -1,8 +1,36 @@
+# Core
 groq>=0.9.0
 streamlit>=1.35.0
+watchdog>=4.0.0
+
+# LangChain
 langchain>=0.2.0
 langchain-groq>=0.1.0
+langchain-community>=0.2.0
+
+# Visualization
 matplotlib>=3.9.0
 numpy>=1.26.0
+seaborn>=0.13.0
+
+# Data
+pandas>=2.2.0
+
+# File handling
 pathlib2>=2.3.7
-watchdog>=4.0.0
+
+# NLP
+scikit-learn>=1.5.0
+sentence-transformers>=2.7.0
+transformers>=4.40.0
+torch>=2.0.0
+
+# Utils
+python-dotenv>=1.0.0
+requests>=2.31.0
+tqdm>=4.66.0
+colorama>=0.4.6
+
+# Notebook
+notebook>=7.0.0
+ipykernel>=6.29.0
