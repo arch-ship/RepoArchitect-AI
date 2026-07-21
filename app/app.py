@@ -128,12 +128,18 @@ with st.sidebar:
                                  label_visibility="collapsed")
     if uploaded:
         try:
-            bundle_data = json.load(uploaded)
-            st.session_state.bundle       = bundle_data
-            st.session_state.codebase_text = bundle_to_text(bundle_data)
-            st.session_state.stats        = get_project_stats(bundle_data)
-            st.session_state.deps         = map_dependencies(bundle_data['files'])
-            st.success("Bundle loaded!")
+            bundle_data = json.loads(uploaded.read().decode('utf-8'))
+            if 'files' not in bundle_data or len(bundle_data['files']) == 0:
+                st.error("Bundle is empty! Run bundler.py on a project with code files.")
+            else:
+                st.session_state.bundle        = bundle_data
+                st.session_state.codebase_text = bundle_to_text(bundle_data)
+                st.session_state.stats         = get_project_stats(bundle_data)
+                st.session_state.deps          = map_dependencies(bundle_data['files'])
+                st.session_state.analyzed      = True
+                n = bundle_data['metadata']['total_files']
+                st.success(f"Bundle loaded! {n} files found.")
+                st.rerun()
         except Exception as e:
             st.error(f"Invalid bundle: {e}")
 
